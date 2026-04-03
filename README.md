@@ -1,11 +1,5 @@
 # Interpretable Debiasing of Vision-Language Models for Social Fairness (CVPR 2026)
 
-<br>
-
- <a href="https://arxiv.org/abs/2602.24014"><img src="https://img.shields.io/badge/Paper-arXiv:2602.24014-red"></a>
-
-<br>
-
 Authors: [Na Min An](https://namin-an.github.io/)
 [Yoonna Jang](https://yoonnajang.github.io/)
 [Yusuke Hirota](https://www.y-hirota.com/)
@@ -15,7 +9,9 @@ Authors: [Na Min An](https://namin-an.github.io/)
 
 <br>
 
-<p align="center" width="100%"><img src="./assets/diagram.png" alt="DeBiasLens Overview"></img></p>   
+<a href="https://arxiv.org/abs/2602.24014"><img src="https://img.shields.io/badge/Paper-arXiv:2602.24014-red"></a>
+
+<p align="center" width="100%"><img src="./assets/img/diagram.png" alt="DeBiasLens Overview"></img></p>   
 
 <br>
 
@@ -29,10 +25,12 @@ Authors: [Na Min An](https://namin-an.github.io/)
 
 ## Installation
 
+This project is built and tested on the official [Pytorch Docker Image - 2.5.1-cuda12.4-cudnn9-devel](https://hub.docker.com/layers/pytorch/pytorch/2.5.1-cuda12.4-cudnn9-devel/images/sha256-14611869895df612b7b07227d5925f30ec3cd6673bad58ce3d84ed107950e014). 
+
 ```bash
-git clone https://github.com/<your-username>/debiaslens.git
-cd debiaslens
-pip install -r requirements.txt
+git clone https://github.com/namin-an/DeBiasLens.git
+cd DeBiasLens
+pip install -r requirements_copenlu.txt
 ```
 
 ---
@@ -42,37 +40,71 @@ pip install -r requirements.txt
 ### 1. Train Sparse Autoencoders
 
 Train SAEs on facial image or caption datasets to uncover latent social attribute neurons.
+Note that this is built upon the [sae-for-vlm](https://github.com/ExplainableML/sae-for-vlm) repository by supporting new datasets (`bios`, `celeba`, `cocogender`, `cocogendertxt`, `fairface`), model architecture (`InternViT-300M-448px`), and text encoder (`--probe_text_enc`).
+Below is the example of training SAE on `fairface`  dataset for `clip-vit-large-patch14-336`. Please refer to the scripts for more details.
 
-### 2. Localize Social Attribute Neurons
+```bash
+cd sae-for-vlm
+export KAGGLEHUB_CACHE="<path/to/data>"
+export WANDB_API_KEY="<your-wandb-api-key>"
+export FAIRFACE_PATH="<path/to/data/fairface>"
+DATASET_PATH="${FAIRFACE_PATH}"
 
-Identify neurons most responsive to specific demographic attributes.
+# 1. Save original activations
+for SPLIT in "train" "val"; do
+  python save_activations.py \
+    --batch_size 32 \
+    --model_name "clip-vit-large-patch14-336" \
+    --attachment_point "post_mlp_residual" \
+    --layer 23 \
+    --dataset_name "fairface" \
+    --split "${SPLIT}" \
+    --data_path "${DATASET_PATH}" \
+    --num_workers 0 \
+    --output_dir "./activations_dir/ours/random_k_2/fairface_${SPLIT}_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+    --random_k 2 \
+    --save_every 100
+done
 
-### 3. Debiased Inference
+# 2. Train SAE
+python sae_train.py \
+  --sae_model "matroyshka_batch_top_k" \
+  --activations_dir "[your_working_path]/DeBiasLens//sae-for-vlm/activations_dir/raw/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+  --val_activations_dir "[your_working_path]/DeBiasLens//sae-for-vlm/activations_dir/raw/random_k_2/fairface_val_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+  --checkpoints_dir "checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/" \
+  --expansion_factor 1 \
+  --steps 110000 \
+  --save_steps 20000 \
+  --log_steps 10000 \
+  --batch_size 4096 \
+  --k 20 \
+  --auxk_alpha 0.03 \
+  --decay_start 109999 \
+  --group_fractions 0.0625 0.125 0.25 0.5625
+```
 
-Run VLM inference with targeted neuron deactivation.
+### 2 & 3. Localize Social Attribute Neurons & Debiased Inference
 
+Identify neurons most responsive to specific demographic attributes and run VLM inference with targeted neuron deactivation.
+
+😀 VLM DeBiasing
+```bash
+python ../evaluate.py --md_flag [sae_clip/clip-vitb16/clip-vitl14/debias_clip/siglip/blip-itm]
+```
+
+😀 LVLM DeBiasing
+```bash
+cd vla-gender-bias
+```
+
+```bash
+cd VLMEvalKit
+```
 ---
 
-## Repository Structure
+## Datasets
 
-```
-debiaslens/
-├── train_sae.py              # SAE training script
-├── localize_neurons.py       # Neuron localization pipeline
-├── inference_debias.py       # Debiased inference
-├── models/
-│   ├── sae.py                # Sparse Autoencoder architecture
-│   └── vlm_wrapper.py        # Model-agnostic VLM interface
-├── data/
-│   └── README.md             # Dataset download instructions
-├── evaluation/
-│   ├── bias_metrics.py       # Bias evaluation metrics
-│   └── semantic_metrics.py   # Semantic capability benchmarks
-├── configs/                  # Experiment configuration files
-├── assets/                   # Figures and visualizations
-├── requirements.txt
-└── README.md
-```
+Please refer to `data/README.md` for instructions on downloading and preparing the datasets used in our experiments.
 
 ---
 
@@ -92,7 +124,7 @@ Please consider citing our work if you find this work helpful for your research.
 
 ## Acknowledgements
 
-We thank the teams behind the open-source VLM and SAE libraries that made this work possible. This research was conducted in collaboration across KAIST, the University of Copenhagen, and NVIDIA.
+We thank the teams behind the open-source VLM and SAE libraries ([sae-for-vlm](https://github.com/ExplainableML/sae-for-vlm), [vla-gender-bias](https://github.com/ExplainableML/vla-gender-bias), [debias-vision-lang](https://github.com/oxai/debias-vision-lang)) that made this work possible. This research was conducted in collaboration across KAIST, the University of Copenhagen, and NVIDIA.
 
 ---
 
