@@ -4,7 +4,7 @@ import torch.nn as nn
 from typing import Optional, Tuple
 
 import sys
-sys.path.append('/workspace/cvml_user/namin/bias_vlm/sae-for-vlm')
+sys.path.append('[your_working_path]/DeBiasLens/sae-for-vlm')
 from models.llava import SAEWrapper, CLIPEncoderLayerPostMlpResidual_notfromLLaVA, CLIPEncoderLayerPostMlpResidual_notfromLLaVA_saeembs
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export IMAGENET_PATH="/workspace/cvml_user/namin/bias_vlm/data/cocogender"
+export IMAGENET_PATH="[your_working_path]/DeBiasLens/data/cocogender"
 DATASET_PATH="${IMAGENET_PATH}"
 
 # # 1. Save original activations
@@ -22,8 +22,8 @@ DATASET_PATH="${IMAGENET_PATH}"
 # # 2. Train SAE
 python sae_train.py \
   --sae_model "matroyshka_batch_top_k" \
-  --activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/raw/random_k_2/cocogender_train_activations_clip-vit-base-patch16_11_post_mlp_residual" \
-  --val_activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/raw/random_k_2/cocogender_val_activations_clip-vit-base-patch16_11_post_mlp_residual" \
+  --activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/cocogender_train_activations_clip-vit-base-patch16_11_post_mlp_residual" \
+  --val_activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/cocogender_val_activations_clip-vit-base-patch16_11_post_mlp_residual" \
   --checkpoints_dir "checkpoints_dir/matroyshka_batch_top_k_20_x4/random_k_2/" \
   --expansion_factor 4 \
   --steps 110000 \
@@ -78,7 +78,7 @@ python visualize_neurons.py \
 #   --data_path "${DATASET_PATH}" \
 #   --batch_size 128
 
-# export IMAGENET_PATH="/workspace/cvml_user/namin/bias_vlm/bias_vlm/data/cocogender/train"
+# export IMAGENET_PATH="[your_working_path]/DeBiasLens/bias_vlm/data/cocogender/train"
 # DATASET_PATH="${IMAGENET_PATH}"
 
 # python imagenet_subset.py \

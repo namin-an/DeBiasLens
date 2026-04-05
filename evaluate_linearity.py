@@ -110,7 +110,7 @@ def main(args):
     
             
         # llava = Llava() 
-        sae_path = f"/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+        sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
         sae = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
         
     else:
@@ -220,7 +220,7 @@ if __name__ == "__main__":
     parser.add_argument("--epoch", type=int, default=0)
     parser.add_argument("--neuron", action='store_true')
     parser.add_argument("--save", type=bool, default=False)
-    parser.add_argument("--ckpt_dir", type=str, default="/workspace/cvml_user/namin/bias_vlm/checkpoints")
+    parser.add_argument("--ckpt_dir", type=str, default="[your_working_path]/DeBiasLens/checkpoints")
     parser.add_argument("--text", action='store_true')
     parser.add_argument("--stereotype", action='store_true')
 

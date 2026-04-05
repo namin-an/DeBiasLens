@@ -17,7 +17,7 @@ import sae_clip
 from sae_clip.model.model import ClipLike, model_loader
 
 import sys
-sys.path.append('/workspace/cvml_user/namin/bias_vlm/sae-for-vlm')
+sys.path.append('[your_working_path]/DeBiasLens/sae-for-vlm')
 from dictionary_learning.trainers import MatroyshkaBatchTopKSAE
 
 
@@ -102,7 +102,7 @@ def main(args):
             neurons_to_fix2 = {105:0, 163:0, 102:0}
             neurons_to_fix3 = {6:0, 264:0, 279:0, 98:0, 454:0, 364:0}
         
-        sae_path = f"/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+        sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
         sae = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
 
         # neuron = 275
@@ -120,17 +120,17 @@ def main(args):
         # start_idx = 0
         # end_idx = 2048 #65536
 
-        # save_dir = f"/workspace/cvml_user/namin/bias_vlm/neuron_outputs_{data_type}"
+        # save_dir = f"[your_working_path]/DeBiasLens/neuron_outputs_{data_type}"
         # file_prefix = f"neurons_{start_idx}_{end_idx}_{epoch}_{expansion_factor}"
         
         # # laion
         # file_name = "laion_400_unigram.txt" #"clip_disect_20k.txt"
-        # file_path = f"/workspace/cvml_user/namin/bias_vlm/MSAE/vocab/{file_name}"  # Replace with your file path
+        # file_path = f"[your_working_path]/DeBiasLens/MSAE/vocab/{file_name}"  # Replace with your file path
         # with open(file_path, "r", encoding="utf-8") as f:
         #     words = [line.strip() for line in f if line.strip()]
         
         # from LVLM
-        # path = f"/workspace/cvml_user/namin/bias_vlm/neuron_outputs_{data_type}/neurons_0_{end_idx}_{epoch}_{expansion_factor}.json"
+        # path = f"[your_working_path]/DeBiasLens/neuron_outputs_{data_type}/neurons_0_{end_idx}_{epoch}_{expansion_factor}.json"
         # words = []
         # with open(path, "r") as f:
         #     for line in f:
@@ -226,7 +226,7 @@ if __name__ == "__main__":
     parser.add_argument("--sae",  action='store_true')
     parser.add_argument("--text", action='store_true')
 
-    parser.add_argument("--ckpt_dir", type=str, default="/workspace/cvml_user/namin/bias_vlm/checkpoints")
+    parser.add_argument("--ckpt_dir", type=str, default="[your_working_path]/DeBiasLens/checkpoints")
     
     args = parser.parse_args()
     main(args)

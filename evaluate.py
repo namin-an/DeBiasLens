@@ -111,11 +111,11 @@ def main(args):
     
             
         # llava = Llava() 
-        sae_path = f"/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+        sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
         sae = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
 
         # text = "Describe thie image in a single sentence." # Is this person baker or chef? Choose only one."
-        # url = "/workspace/cvml_user/namin/bias_vlm/data/PAIRS/data/occupations/apron/white_man.png"
+        # url = "[your_working_path]/DeBiasLens/data/PAIRS/data/occupations/apron/white_man.png"
         # # image = Image.open(url) #requests.get(url, stream=True).raw)
         # image = Image.new("RGB", (224, 224), color="white") 
         # for neuron in [35, 38, 67]: #range(65536): # [258, 34, 81]: #[258]: # Note: ID of the pencil neuron may change after retraining SAE
@@ -128,7 +128,7 @@ def main(args):
         #     print()
 
         # alpha = 100
-        # save_dir = f"/workspace/cvml_user/namin/bias_vlm/neuron_outputs_{data_type}"
+        # save_dir = f"[your_working_path]/DeBiasLens/neuron_outputs_{data_type}"
         # file_prefix = f"neurons_{data_type}_{clip_type}_{layer}_{start_idx}_{end_idx}_{epoch}_{expansion_factor}"
         # save_path = os.path.join(save_dir, f"{file_prefix}.json")
 
@@ -147,11 +147,11 @@ def main(args):
         # # torch.save(all_embeddings, save_emb_path)
 
         # file_name = "laion_400_unigram.txt" #"clip_disect_20k.txt"
-        # file_path = f"/workspace/cvml_user/namin/bias_vlm/MSAE/vocab/{file_name}"  # Replace with your file path
+        # file_path = f"[your_working_path]/DeBiasLens/MSAE/vocab/{file_name}"  # Replace with your file path
         # with open(file_path, "r", encoding="utf-8") as f:
         #     words = [line.strip() for line in f if line.strip()]
 
-        # # path = f"/workspace/cvml_user/namin/bias_vlm/neuron_outputs_{data_type}/neurons_0_{end_idx}_{epoch}_{expansion_factor}.json"
+        # # path = f"[your_working_path]/DeBiasLens/neuron_outputs_{data_type}/neurons_0_{end_idx}_{epoch}_{expansion_factor}.json"
         # # words = []
         # # with open(path, "r") as f:
         # #     for line in f:
@@ -162,7 +162,7 @@ def main(args):
         # #         words.append(response)
         # # print(len(words))
 
-        # save_dir = f"/workspace/cvml_user/namin/bias_vlm/neuron_outputs_{data_type}"
+        # save_dir = f"[your_working_path]/DeBiasLens/neuron_outputs_{data_type}"
         # file_prefix = f"neurons_{start_idx}_{end_idx}_{epoch}_{expansion_factor}"
 
         # deb_clip_model, preprocess = sae_clip.load("ViT-B/16", device=device) #B/16", device=device) #L/14@336px", device=device)
@@ -263,7 +263,7 @@ def main(args):
         # print(woman_neurons)
 
         # # text = "Is this person a woman or man?"
-        # # url = "/workspace/cvml_user/namin/bias_vlm/data/PAIRS/data/occupations/apron/white_man.png"
+        # # url = "[your_working_path]/DeBiasLens/data/PAIRS/data/occupations/apron/white_man.png"
         # # image = Image.open(url) #requests.get(url, stream=True).raw)
 
         # # text = "Describe this image in a single sentence." #word."
@@ -423,7 +423,7 @@ if __name__ == "__main__":
     parser.add_argument("--epoch", type=int, default=0)
     parser.add_argument("--neuron", action='store_true')
     parser.add_argument("--save", type=bool, default=False)
-    parser.add_argument("--ckpt_dir", type=str, default="/workspace/cvml_user/namin/bias_vlm/checkpoints")
+    parser.add_argument("--ckpt_dir", type=str, default="[your_working_path]/DeBiasLens/checkpoints")
     parser.add_argument("--text", action='store_true')
     parser.add_argument("--stereotype", action='store_true')
 

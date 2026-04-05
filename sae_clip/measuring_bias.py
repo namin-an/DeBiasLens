@@ -369,7 +369,7 @@ def measure_bias(cliplike: ClipLike, img_preproc: Callable, tokenizer: Callable,
         else:
             if sae is not None:
                 labels_list, image_embeddings = get_labels_img_embeddings(dl, cliplike, device, md_flag, is_sae=False, is_proj=True, progress=True, is_intern=is_intern, is_llava=is_llava)
-                # torch.save(image_embeddings, f'/workspace/cvml_user/namin/bias_vlm/checkpoints/decoded_{data_type}_768_8_{attribute}_{prompt}_epoch{epoch}_clip-vitl14.pt')
+                # torch.save(image_embeddings, f'[your_working_path]/DeBiasLens/checkpoints/decoded_{data_type}_768_8_{attribute}_{prompt}_epoch{epoch}_clip-vitl14.pt')
                 prompts_embeddings = get_prompt_embeddings(cliplike, tokenizer, device, md_flag, prompts, is_llava=is_llava)
             if sae_text is not None:
                 labels_list, image_embeddings = get_labels_img_embeddings(dl, cliplike, device, md_flag, progress=True, is_intern=is_intern, is_llava=is_llava)
@@ -393,9 +393,9 @@ def measure_bias(cliplike: ClipLike, img_preproc: Callable, tokenizer: Callable,
         else:
             labels_list, image_embeddings = get_labels_img_embeddings(dl, cliplike, device, md_flag, progress=True, is_intern=is_intern, is_llava=is_llava)
             # np.save(f"labels_{data_type}_768_8_{attribute}_{prompt}_epoch{epoch}_clip-vitl14.npy", labels_list)
-            # torch.save(image_embeddings, f'/workspace/cvml_user/namin/bias_vlm/checkpoints/encoded_{data_type}_768_8_{attribute}_{prompt}_clip-vitl14.pt')
+            # torch.save(image_embeddings, f'[your_working_path]/DeBiasLens/checkpoints/encoded_{data_type}_768_8_{attribute}_{prompt}_clip-vitl14.pt')
             prompts_embeddings = get_prompt_embeddings(cliplike, tokenizer, device, md_flag, prompts, is_llava=is_llava)
-            # torch.save(prompts_embeddings, f'/workspace/cvml_user/namin/bias_vlm/checkpoints/prompt_{data_type}_768_8_{attribute}_{prompt}_clip-vitl14.pt')
+            # torch.save(prompts_embeddings, f'[your_working_path]/DeBiasLens/checkpoints/prompt_{data_type}_768_8_{attribute}_{prompt}_clip-vitl14.pt')
             
 
     result = {}

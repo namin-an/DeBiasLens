@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export KAGGLEHUB_CACHE="/workspace/cvml_user/namin/bias_vlm/data"
+export KAGGLEHUB_CACHE="[your_working_path]/DeBiasLens/data"
  export WANDB_API_KEY=""
 
-export BIOS_PATH="/workspace/cvml_user/namin/bias_vlm/data/bias_in_bios"
+export BIOS_PATH="[your_working_path]/DeBiasLens/data/bias_in_bios"
 DATASET_PATH="${BIOS_PATH}"
 
 # 1. Save original activations
@@ -26,8 +26,8 @@ done
 # # # # 2. Train SAE
 # python sae_train.py \
 #   --sae_model "matroyshka_batch_top_k" \
-#   --activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/raw/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual" \
-#   --val_activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/raw/random_k_2/bios_val_activations_clip-vit-base-patch16_11_post_mlp_residual" \
+#   --activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual" \
+#   --val_activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/bios_val_activations_clip-vit-base-patch16_11_post_mlp_residual" \
 #   --checkpoints_dir "checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/" \
 #   --expansion_factor 1 \
 #   --steps 110000 \
@@ -84,7 +84,7 @@ done
 #   --data_path "${DATASET_PATH}" \
 #   --batch_size 128
 
-# export BIOS_PATH="/workspace/cvml_user/namin/bias_vlm/data/bios/imgs/train_val/train"
+# export BIOS_PATH="[your_working_path]/DeBiasLens/data/bios/imgs/train_val/train"
 # DATASET_PATH="${BIOS_PATH}"
 
 # python imagenet_subset.py \
@@ -94,7 +94,7 @@ done
 # # no steering (1000 images, 10 neurons) 
 # python steering_score.py \
 #  --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x1/mean_pool/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual/hai_indices_16.npy" \
-#  --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
+#  --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
 #  --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual_matroyshka_batch_top_k_20_x1/trainer_0/checkpoints/ae_100000.pt" \
 #  --images_path "./images_bios/" \
 #  --no-pre_zero \
@@ -106,7 +106,7 @@ done
 # # steering (1000 images, 10 neurons)
 # python steering_score.py \
 #  --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x1/mean_pool/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual/hai_indices_16.npy" \
-#  --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch16.pt" \
+#  --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch16.pt" \
 #  --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual_matroyshka_batch_top_k_20_x1/trainer_0/checkpoints/ae_100000.pt" \
 #  --images_path "./images_bios/" \
 #  --no-pre_zero \
@@ -118,7 +118,7 @@ done
 # # # steering (1 image, 1000 neurons)
 # python steering_score.py \
 #   --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x1/mean_pool/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual/hai_indices_16.npy" \
-#   --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
+#   --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
 #   --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual_matroyshka_batch_top_k_20_x1/trainer_0/checkpoints/ae_100000.pt" \
 #   --images_path "./images/" \
 #   --no-pre_zero \
@@ -129,7 +129,7 @@ done
 
 # python steering_score.py \
 #   --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x1/mean_pool/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual/hai_indices_16.npy" \
-#   --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
+#   --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/bios_train_embeddings_clip-vit-base-patch32.pt" \
 #   --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/bios_train_activations_clip-vit-base-patch16_11_post_mlp_residual_matroyshka_batch_top_k_20_x1/trainer_0/checkpoints/ae_100000.pt" \
 #   --images_path "./images/" \
 #   --no-pre_zero \

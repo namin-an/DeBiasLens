@@ -9,7 +9,7 @@ from PIL import Image
 from abc import abstractproperty
 
 import sys
-sys.path.append('/workspace/cvml_user/namin/bias_vlm/vla-gender-bias')
+sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
 from vlms.base import BasePreprocessor
 from vlms.llava import LLaVAMyPreprocessor
 from vlms.backbones.llava.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX

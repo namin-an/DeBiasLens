@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export KAGGLEHUB_CACHE="/workspace/cvml_user/namin/bias_vlm/data"
+export KAGGLEHUB_CACHE="[your_working_path]/DeBiasLens/data"
 export WANDB_API_KEY=""
 
-export FAIRFACE_PATH="/workspace/cvml_user/namin/bias_vlm/data/fairface"
+export FAIRFACE_PATH="[your_working_path]/DeBiasLens/data/fairface"
 DATASET_PATH="${FAIRFACE_PATH}"
 
 # 1. Save original activations
@@ -25,8 +25,8 @@ DATASET_PATH="${FAIRFACE_PATH}"
 # # # # # # 2. Train SAE
 # python sae_train.py \
 #   --sae_model "matroyshka_batch_top_k" \
-#   --activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/ours/random_k_2/fairface_train_activations_llava-onevision-qwen2-7b-ov-hf_25_post_mlp_residual" \
-#   --val_activations_dir "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/activations_dir/ours/random_k_2/fairface_val_activations_llava-onevision-qwen2-7b-ov-hf_25_post_mlp_residual" \
+#   --activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/ours/random_k_2/fairface_train_activations_llava-onevision-qwen2-7b-ov-hf_25_post_mlp_residual" \
+#   --val_activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/ours/random_k_2/fairface_val_activations_llava-onevision-qwen2-7b-ov-hf_25_post_mlp_residual" \
 #   --checkpoints_dir "checkpoints_dir/matroyshka_batch_top_k_20_x2/random_k_2/" \
 #   --expansion_factor 8 \
 #   --steps 110000 \
@@ -81,7 +81,7 @@ python visualize_neurons.py \
 #   --data_path "${DATASET_PATH}" \
 #   --batch_size 128
 
-# export FAIRFACE_PATH="/workspace/cvml_user/namin/bias_vlm/data/fairface/imgs/train_val/train"
+# export FAIRFACE_PATH="[your_working_path]/DeBiasLens/data/fairface/imgs/train_val/train"
 # DATASET_PATH="${FAIRFACE_PATH}"
 
 # python imagenet_subset.py \
@@ -91,7 +91,7 @@ python visualize_neurons.py \
 # # no steering (1000 images, 10 neurons) 
 # python steering_score.py \
 #  --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x2/mean_pool/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual/hai_indices_16.npy" \
-#  --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
+#  --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
 #  --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x2/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual_matroyshka_batch_top_k_20_x2/trainer_0/checkpoints/ae_100000.pt" \
 #  --images_path "./images_fairface/" \
 #  --no-pre_zero \
@@ -103,7 +103,7 @@ python visualize_neurons.py \
 # # steering (1000 images, 10 neurons)
 # python steering_score.py \
 #  --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x2/mean_pool/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual/hai_indices_16.npy" \
-#  --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-large-patch14-336.pt" \
+#  --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-large-patch14-336.pt" \
 #  --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x2/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual_matroyshka_batch_top_k_20_x2/trainer_0/checkpoints/ae_100000.pt" \
 #  --images_path "./images_fairface/" \
 #  --no-pre_zero \
@@ -115,7 +115,7 @@ python visualize_neurons.py \
 # # # steering (1 image, 1000 neurons)
 # python steering_score.py \
 #   --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x2/mean_pool/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual/hai_indices_16.npy" \
-#   --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
+#   --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
 #   --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x2/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual_matroyshka_batch_top_k_20_x2/trainer_0/checkpoints/ae_100000.pt" \
 #   --images_path "./images/" \
 #   --no-pre_zero \
@@ -126,7 +126,7 @@ python visualize_neurons.py \
 
 # python steering_score.py \
 #   --hai_indices_path "./activations_dir/matroyshka_batch_top_k_20_x2/mean_pool/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual/hai_indices_16.npy" \
-#   --embeddings_path "/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
+#   --embeddings_path "[your_working_path]/DeBiasLens/sae-for-vlm/embeddings_dir/fairface_train_embeddings_clip-vit-base-patch32.pt" \
 #   --sae_path "./checkpoints_dir/matroyshka_batch_top_k_20_x2/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_25_post_mlp_residual_matroyshka_batch_top_k_20_x2/trainer_0/checkpoints/ae_100000.pt" \
 #   --images_path "./images/" \
 #   --no-pre_zero \
