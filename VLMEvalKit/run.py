@@ -8,7 +8,7 @@ from functools import partial
 def get_gpu_list():
     CUDA_VISIBLE_DEVICES = os.environ.get('CUDA_VISIBLE_DEVICES', '')
     if CUDA_VISIBLE_DEVICES != '':
-        gpu_list = [int(x) for x in CUDA_VISIBLE_DEVICES.split(',')]
+        gpu_list = [int(x) for x in CUDA_VISIBLE_DEVICES.split('ㄴ,')]
         return gpu_list
     try:
         ps = subprocess.Popen(('nvidia-smi', '--list-gpus'), stdout=subprocess.PIPE)
@@ -320,7 +320,7 @@ def main():
 
             if "_attach" in model_name:
                 import sys
-                sys.path.append('/workspace/cvml_user/namin/bias_vlm/sae-for-vlm')
+                sys.path.append('[your_working_path]/DeBiasLens/sae-for-vlm')
                 from dictionary_learning.trainers import MatroyshkaBatchTopKSAE
 
                 if 'llava' in model_name:
@@ -334,7 +334,7 @@ def main():
                     layer = 23
                     epoch = 100000
 
-                    sae_path = f"/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+                    sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
                     sae = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
                     neurons_to_fix = {250:0, 66:0} # gender neuron
                     model.attach_and_fix(sae=sae, neurons_to_fix=neurons_to_fix, pre_zero=False, alpha=alpha)
@@ -349,7 +349,7 @@ def main():
                     layer = 23
                     epoch = 100000
 
-                    sae_path = f"/workspace/cvml_user/namin/bias_vlm/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+                    sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_{clip_type}_{layer}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
                     sae = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
                     # neurons_to_fix =  {651:0, 192:0} #{386:0, 196:0}  # gender neuron
                     data = [

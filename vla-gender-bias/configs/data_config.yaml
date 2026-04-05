@@ -1,0 +1,24 @@
+data_root: "[your_working_path]/DeBiasLens/vla-gender-bias/setup/data-scratch" #"../vla-gender-bias/setup/data-scratch"
+results_root: "./results/"
+benchmark_results_root: "./results/benchmark/"
+benchmark_datasets:
+  - fairface_margin025
+  - fairface_margin125
+  - miap
+  - phase
+  - pata
+benchmark_tasks:
+  - sentiment
+  - skills
+  - occupations
+classification_datasets:
+  - fairface_margin025
+  - fairface_margin125
+  - miap
+  - phase
+  - pata
+  - idenprof
+classification_attributes:
+  - gender
+  - ethnicity
+  - occupation

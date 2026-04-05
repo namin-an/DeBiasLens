@@ -97,11 +97,38 @@ python ../evaluate.py \
 
 😀 LVLM DeBiasing
 ```bash
+models=(
+    "sae:llava-7b:attach"
+    "internvl2-8b"
+    "prompt-tuned:internvl2-8b"
+    "tuned:internvl2-8b:occupations:full"
+    "tuned:internvl2-8b:sentiment:full"
+    "tuned:internvl2-8b:skills:full"
+    "tuned:internvl2-8b:occupations:lora"
+    "tuned:internvl2-8b:sentiment:lora"
+    "tuned:internvl2-8b:skills:lora"
+    "pruned:internvl2-8b:0.05"
+    "pruned:internvl2-8b:0.1"
+    "pruned:internvl2-8b:0.15"
+    "pruned:internvl2-8b:0.2"
+    "pruned:internvl2-8b:0.3"
+    "pruned:internvl2-8b:0.4"
+    "pruned:internvl2-8b:0.5"
+    "sae:internvl2-8b:attach"
+)
 cd vla-gender-bias
-```
-
-```bash
-cd SB-Bench
+for i in {0..40}; do 
+    echo "Running prompt chunk $i for model $model..."
+    for model in "${models[@]}"; do
+        for task in occupations; do
+            echo "=== Running benchmarks for model: $model ==="
+            python benchmark_ours.py \
+            --model $model \
+            --prompt-chunk-index $i \
+            --task $task
+        done
+    done
+done
 ```
 
 ```bash
@@ -112,7 +139,7 @@ for a in 0.0 0.2 0.4 0.5 0.6 0.8 1.0; do
     --data MME MMMU_DEV_VAL SEEDBench_IMG \
     --model [sae_intervl2_8b_attach/sae_llava_v1.5_7b_hf_attach] \
     --verbose \
-    --alpha $a &> nohup_saeintern_attach.out
+    --alpha $a
 done
 ```
 ---
@@ -139,4 +166,4 @@ Please consider citing our work if you find this work helpful for your research.
 
 ## Acknowledgements
 
-We thank the teams behind the open-source code ([sae-for-vlm](https://github.com/ExplainableML/sae-for-vlm), [vla-gender-bias](https://github.com/ExplainableML/vla-gender-bias), [debias-vision-lang](https://github.com/oxai/debias-vision-lang), [SB-Bench](https://github.com/UCF-CRCV/BBQ-Vision)) that made this work possible. This research was conducted in collaboration across KAIST, the University of Copenhagen, and NVIDIA.
+We thank the teams behind the open-source code ([sae-for-vlm](https://github.com/ExplainableML/sae-for-vlm), [debias-vision-lang](https://github.com/oxai/debias-vision-lang), [vla-gender-bias](https://github.com/ExplainableML/vla-gender-bias), [SB-Bench](https://github.com/UCF-CRCV/BBQ-Vision), [VLM-Evalkit](https://github.com/open-compass/vlmevalkit)) that made this work possible. This research was conducted in collaboration across KAIST, the University of Copenhagen, and NVIDIA.
