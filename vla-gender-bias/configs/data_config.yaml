@@ -1,4 +1,4 @@
-data_root: "[your_working_path]/DeBiasLens/vla-gender-bias/setup/data-scratch" #"../vla-gender-bias/setup/data-scratch"
+data_root: "$HOME_PATH/DeBiasLens/vla-gender-bias/setup/data-scratch" #"../vla-gender-bias/setup/data-scratch"
 results_root: "./results/"
 benchmark_results_root: "./results/benchmark/"
 benchmark_datasets:

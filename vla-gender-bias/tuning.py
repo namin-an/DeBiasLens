@@ -13,7 +13,7 @@ from typing import Optional
 from vlms import load_model
 from dataclasses import dataclass
 import sys
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from utils_new.configs import dataset_configs
 from torch.utils.data import DataLoader, Dataset
 from bias_eval_utils import BiasPromptIterator, BiasPrompt

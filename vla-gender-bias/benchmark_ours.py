@@ -15,7 +15,7 @@ from vlms import load_model
 from bias_eval_utils import Prompt
 from bias_eval_utils import BiasPrompt
 import sys
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from utils_new.configs import dataset_configs
 from utils_new.benchmark_utils import make_dataloader, encode_option_letter
 

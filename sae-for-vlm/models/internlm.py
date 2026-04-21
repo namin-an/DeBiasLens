@@ -9,10 +9,10 @@ from typing import Optional, Tuple
 import copy
 
 import sys
-# sys.path.append('[your_working_path]/DeBiasLens/sae-for-vlm')
+# sys.path.append(f"{os.environ.get('HOME_PATH', os.environ['HOME_PATH'])}/DeBiasLens/sae-for-vlm')
 # from models.llava import SAEWrapper
 
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias/vlms')
+sys.path.append(f"{os.environ.get('HOME_PATH', os.environ['HOME_PATH'])}/DeBiasLens/vla-gender-bias/vlms')
 from base import BaseVLM
 from copy import deepcopy
 from dataclasses import dataclass

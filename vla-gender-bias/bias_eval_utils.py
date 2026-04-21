@@ -6,7 +6,7 @@ import pandas as pd
 from typing import Optional
 from dataclasses import dataclass
 import sys
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
+sys.path.append('/workspace/cvml_user/namin/bias_vlm/vla-gender-bias')
 from utils_new.configs import dataset_configs
 from utils_new.benchmark_utils import Prompt, load_dataset
 

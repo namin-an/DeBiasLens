@@ -33,6 +33,11 @@ cd DeBiasLens
 pip install -r requirements_copenlu.txt
 ```
 
+> [!NOTE]
+> This repository uses the `HOME_PATH` environment variable to locate its root directory. You should set this in your shell:
+> `export HOME_PATH="/path/to/DeBiasLens/parent"` (the directory containing `DeBiasLens`).
+> If not set, the code will default to a placeholder path, which may need manual adjustment in the scripts.
+
 ---
 
 ## Usage
@@ -45,9 +50,10 @@ Below is the example of training SAE on `fairface`  dataset for `clip-vit-large-
 
 ```bash
 cd sae-for-vlm
-export KAGGLEHUB_CACHE="<path/to/data>"
+export HOME_PATH="<your-working-path>"
+export KAGGLEHUB_CACHE="${HOME_PATH}/DeBiasLens/data"
 export WANDB_API_KEY="<your-wandb-api-key>"
-export FAIRFACE_PATH="<path/to/data/fairface>"
+export FAIRFACE_PATH="${HOME_PATH}/DeBiasLens/data/fairface/"
 DATASET_PATH="${FAIRFACE_PATH}"
 
 # 1. Save original activations
@@ -69,8 +75,8 @@ done
 # 2. Train SAE
 python sae_train.py \
   --sae_model "matroyshka_batch_top_k" \
-  --activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
-  --val_activations_dir "[your_working_path]/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/fairface_val_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+  --activations_dir "$HOME_PATH/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/fairface_train_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+  --val_activations_dir "$HOME_PATH/DeBiasLens/sae-for-vlm/activations_dir/raw/random_k_2/fairface_val_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
   --checkpoints_dir "checkpoints_dir/matroyshka_batch_top_k_20_x1/random_k_2/" \
   --expansion_factor 1 \
   --steps 110000 \

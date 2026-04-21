@@ -15,7 +15,7 @@ from bias_eval_utils import BiasPrompt
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 import sys
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from utils_new.configs import dataset_configs
 from bias_eval_utils import BiasPromptIterator
 from datasets import load_dataset as load_hf_dataset

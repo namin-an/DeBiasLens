@@ -1,0 +1,1 @@
+global_vqa_instruction = "Choose the correct option and provide it as your response."

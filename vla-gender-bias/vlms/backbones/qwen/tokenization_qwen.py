@@ -503,7 +503,7 @@ class VisImage:
         self.canvas = FigureCanvasAgg(fig)
         # self.canvas = mpl.backends.backend_cairo.FigureCanvasCairo(fig)
         ax = fig.add_axes([0.0, 0.0, 1.0, 1.0])
-        ax.axis("off")
+        ax.axis("of")
         self.fig = fig
         self.ax = ax
         self.reset_image(img)

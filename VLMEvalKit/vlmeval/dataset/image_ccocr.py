@@ -135,7 +135,7 @@ class CCOCRDataset(ImageBaseDataset):
         "CCOCR_MultiSceneOcr_Funsd": "229cc38d193edd00f4383610e98ee873",
         "CCOCR_MultiSceneOcr_Iam": "d897a6d6c3880c65e752ec11b211204c",
         "CCOCR_MultiSceneOcr_ZhDoc": "303682cc16c8bb51b2b896f8ceb8bd38",
-        "CCOCR_MultiSceneOcr_ZhHandwriting": "faa298d366bc05e5cfb39e334afb8eff",
+        "CCOCR_MultiSceneOcr_ZhHandwriting": "faa298d366bc05e5cfb39e334afb8ef",
         "CCOCR_MultiSceneOcr_Hieragent": "6f132cdd0473d7cc145c3e3a08957dd6",
         "CCOCR_MultiSceneOcr_Ic15": "3d94869f312a41d53d0578a06a2fb1f2",
         "CCOCR_MultiSceneOcr_Inversetext": "e141d424a0c4cf9579064428a270f13d",

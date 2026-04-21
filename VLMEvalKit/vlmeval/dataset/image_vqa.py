@@ -2791,7 +2791,7 @@ class CountBenchQA(ImageVQADataset):
         "CountBenchQA":
         "https://opencompass.openxlab.space/utils/VLMEval/CountBenchQA.tsv"
     }
-    DATASET_MD5 = {"CountBenchQA": "fc73c8d4ffa665431448753f094d56ff"}
+    DATASET_MD5 = {"CountBenchQA": "fc73c8d4ffa665431448753f094d56f"}
 
     def build_prompt(self, line):
         if isinstance(line, int):

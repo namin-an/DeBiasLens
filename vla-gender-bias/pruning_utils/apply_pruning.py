@@ -6,7 +6,7 @@ import torch.nn as nn
 from tqdm import tqdm
 from torch import Tensor
 import sys
-sys.path.append('[your_working_path]/DeBiasLens/vla-gender-bias')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from utils_new.custom_nethook import get_module
 from transformers.pytorch_utils import prune_linear_layer
 from transformers.pytorch_utils import find_pruneable_heads_and_indices

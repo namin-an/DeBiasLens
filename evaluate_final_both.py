@@ -17,7 +17,7 @@ from transformers import BlipProcessor, AutoProcessor, BlipForImageTextRetrieval
 import sae_clip
 
 import sys
-sys.path.append('../sae-for-vlm')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/sae-for-vlm")
 from models.llava import Llava
 from dictionary_learning.trainers import MatroyshkaBatchTopKSAE
 
@@ -102,11 +102,11 @@ def main(args):
             
         # llava = Llava() 
         data_type = 'cocogendertxt'
-        sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer_txt}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+        sae_path = f"{os.environ['HOME_PATH']}/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer_txt}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
         sae_txt = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
 
         data_type = 'fairface' 
-        sae_path = f"[your_working_path]/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer_img}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
+        sae_path = f"{os.environ['HOME_PATH']}/DeBiasLens/sae-for-vlm/checkpoints_dir/matroyshka_batch_top_k_20_x{expansion_factor}/random_k_2/{data_type}_train_activations_clip-{clip_type}_{layer_img}_post_mlp_residual_matroyshka_batch_top_k_20_x{expansion_factor}/trainer_0/checkpoints/ae_{epoch}.pt"
         sae_img = MatroyshkaBatchTopKSAE.from_pretrained(sae_path).cuda()
         
     else:
@@ -184,7 +184,7 @@ if __name__ == "__main__":
     parser.add_argument("--epoch", type=int, default=0)
     parser.add_argument("--neuron", action='store_true')
     parser.add_argument("--save", type=bool, default=False)
-    parser.add_argument("--ckpt_dir", type=str, default="[your_working_path]/DeBiasLens/checkpoints")
+    parser.add_argument("--ckpt_dir", type=str, default=f"{os.environ['HOME_PATH']}/DeBiasLens/checkpoints")
     parser.add_argument("--text", action='store_true')
     parser.add_argument("--stereotype", action='store_true')
 
