@@ -152,7 +152,7 @@ done
 
 ## Datasets
 
-Please refer to `data/README.md` for instructions on downloading and preparing the datasets used in our experiments.
+Please refer to `data/README.md` for instructions on downloading and preparing the previous datasets. Our synthetic datasets are available at [VLMBias](https://huggingface.co/vlmbias).
 
 ---
 
