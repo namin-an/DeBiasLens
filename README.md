@@ -89,6 +89,8 @@ python sae_train.py \
   --group_fractions 0.0625 0.125 0.25 0.5625
 ```
 
+Checkpoints are available [here](https://huggingface.co/kaist-ai/debiaslens) as well!
+
 ### 2 & 3. Localize Social Attribute Neurons & Debiased Inference
 
 Identify neurons most responsive to specific demographic attributes and run VLM inference with targeted neuron deactivation.
