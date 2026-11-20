@@ -147,7 +147,6 @@ def main(args):
         # # torch.save(all_embeddings, save_emb_path)
 
         # file_name = "laion_400_unigram.txt" #"clip_disect_20k.txt"
-        file_path = f"{os.environ['HOME_PATH']}/DeBiasLens/MSAE/vocab/{file_name}"  # Replace with your file path
         # with open(file_path, "r", encoding="utf-8") as f:
         #     words = [line.strip() for line in f if line.strip()]
 
