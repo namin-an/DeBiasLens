@@ -8,8 +8,9 @@ import copy
 from PIL import Image
 from abc import abstractproperty
 
+import os
 import sys
-sys.path.append(f"{os.environ.get('HOME_PATH', os.environ['HOME_PATH'])}/DeBiasLens/vla-gender-bias')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from vlms.base import BasePreprocessor
 from vlms.llava_next import LLaVANextPreprocessor
 from vlms.backbones.llava.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IMAGE_TOKEN_INDEX
