@@ -8,11 +8,12 @@ from torch import Tensor
 from typing import Optional, Tuple
 import copy
 
+import os
 import sys
 # sys.path.append(f"{os.environ.get('HOME_PATH', os.environ['HOME_PATH'])}/DeBiasLens/sae-for-vlm')
 # from models.llava import SAEWrapper
 
-sys.path.append(f"{os.environ.get('HOME_PATH', os.environ['HOME_PATH'])}/DeBiasLens/vla-gender-bias/vlms')
+sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias/vlms")
 from base import BaseVLM
 from copy import deepcopy
 from dataclasses import dataclass

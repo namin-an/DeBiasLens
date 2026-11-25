@@ -5,6 +5,7 @@ import torch.nn as nn
 
 from tqdm import tqdm
 from torch import Tensor
+import os
 import sys
 sys.path.append(f"{os.environ['HOME_PATH']}/DeBiasLens/vla-gender-bias")
 from utils_new.custom_nethook import get_module
