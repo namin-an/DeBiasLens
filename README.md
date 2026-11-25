@@ -67,7 +67,7 @@ for SPLIT in "train" "val"; do
     --split "${SPLIT}" \
     --data_path "${DATASET_PATH}" \
     --num_workers 0 \
-    --output_dir "./activations_dir/ours/random_k_2/fairface_${SPLIT}_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
+    --output_dir "./activations_dir/raw/random_k_2/fairface_${SPLIT}_activations_clip-vit-large-patch14-336_23_post_mlp_residual" \
     --random_k 2 \
     --save_every 100
 done
