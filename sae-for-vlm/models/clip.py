@@ -36,10 +36,6 @@ class Clip:
             
         self.probe_text_enc = probe_text_enc
 
-        self.base_CLIPEncoderLayerPostMlpResidual = copy.deepcopy(
-            self.clip.visual.transformer.resblocks[self.layer]
-        )
-
     def encode(self, inputs, probe_text_enc):
         for hook in self.register.keys():
             self.register[hook] = []
